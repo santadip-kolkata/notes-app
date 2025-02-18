@@ -1,8 +1,10 @@
-const express = require('express');
 const path = require('path');
-const cookieParser = require("cookie-parser");
-const app = express();
+const express = require('express');
+const jwt = require("jsonwebtoken");
 const connectDb = require('./config/db');
+const cookieParser = require("cookie-parser");
+const authenticateToken = require("./middlewares/authenticateToken");
+const app = express();
 const PORT = 3000;
 
 connectDb();
@@ -32,8 +34,9 @@ app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'general.html'));
 });
 
-app.get('/private', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'private.html'));
+app.get('/private',authenticateToken,(req, res) => 
+{
+    res.sendFile(path.join(__dirname, 'pages', 'private.html'));
 });
 
 

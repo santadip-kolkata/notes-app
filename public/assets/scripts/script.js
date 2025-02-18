@@ -1,4 +1,6 @@
 
+const apiUrl = 'http://localhost:3000';
+
 document.addEventListener("DOMContentLoaded", function () {
     let emailError = document.getElementById("emailError");
     let passwordError = document.getElementById("passwordError");
@@ -6,14 +8,14 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(emailError);
     console.log(passwordError);
 
-    emailError.innerHTML=''
-    passwordError.innerHTML=''
+    emailError.innerHTML = ''
+    passwordError.innerHTML = ''
 
 });
 
 
 
-document.getElementById("loginForm").addEventListener("submit", function(event) {
+document.getElementById("loginForm").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent form submission
 
     let email = document.getElementById("email").value;
@@ -23,10 +25,24 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     let isPasswordValid = validatePassword(password);
 
     if (isEmailValid && isPasswordValid) {
-        alert("Login Successful ✅");
-        window.location.href="http://localhost:3000/private"
+        // api call from here
+        fetch(`${apiUrl}/auth/login`,{
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json' // Ensure correct content type
+            },
+            body:JSON.stringify({ username: email,password:password })
+        })
+            .then(response => response.json())
+            .then(data=>{
+                if(data.message=='success' && data.status==200)
+                {
+                    window.location.href='http://localhost:3000/private'
+                }
+            
+            })
     }
-    else{
+    else {
         alert('Error occured')
     }
 });
@@ -37,7 +53,7 @@ function validateEmail(email) {
 
     if (!emailPattern.test(email)) {
         emailError.style.display = "block";
-        emailError.innerHTML='Invalid email address'
+        emailError.innerHTML = 'Invalid email address'
         return false;
     } else {
         emailError.style.display = "none";
@@ -50,7 +66,7 @@ function validatePassword(password) {
 
     if (password.length < 6) {
         passwordError.style.display = "block";
-        passwordError.innerHTML='Invalid password'
+        passwordError.innerHTML = 'Invalid password'
         return false;
     } else {
         passwordError.style.display = "none";
