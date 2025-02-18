@@ -1,5 +1,5 @@
 const validateUser = (req, res, next) => {
-    const username = req.query.username;
+    const username = req.cookies.username;
     if (!username) {
         return res.status(401).send('Unauthorized: Username is required');
     }

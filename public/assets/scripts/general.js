@@ -16,6 +16,18 @@ const cards = [
         category: "Programming Language", 
         icon: "fa-brands fa-golang" ,
         fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
+    },
+    { 
+        title: "Python", 
+        category: "Programming Language", 
+        icon: "fa-brands fa-python" ,
+        fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
+    },
+    { 
+        title: "Javascript", 
+        category: "Programming Language", 
+        icon: "fa-brands fa-js" ,
+        fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
     }
 ];
 
@@ -42,18 +54,38 @@ document.querySelectorAll(".view-btn").forEach(button => {
         const index = this.getAttribute("data-index");
         if(index>=0)
         {
-            document.getElementById("pdfViewer").src = cards[index].fileUrl;
+            const loadingTask = pdfjsLib.getDocument(cards[index].fileUrl);
+            loadingTask.promise.then(pdf => {
+                pdf.getPage(1).then(page => {
+                    const canvas = document.getElementById("pdfCanvas");
+                    const context = canvas.getContext("2d");
+
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+
+                    page.render(renderContext);
+                });
+            });
+
+            // Show the modal
+            document.getElementById("pdfModal").style.display = "flex";
         }
         else{
             alert("invalid index");
         }
-        document.getElementById("pdfModal").style.display = "flex";
+        
     });
 });
 
 function closePDF() {
     document.getElementById("pdfModal").style.display = "none";
-    document.getElementById("pdfViewer").src = ""; // Clear PDF source
+    document.getElementById("pdfCanvas").getContext("2d").clearRect(0, 0, pdfCanvas.width, pdfCanvas.height);
 }
 
 
