@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'general.html'));
+    res.sendFile(path.join(__dirname, 'pages', 'general.html'));
 });
 
 app.get('/private',authenticateToken,(req, res) => 

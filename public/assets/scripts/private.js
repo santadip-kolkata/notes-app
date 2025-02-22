@@ -1,34 +1,65 @@
 const cards = [
     { 
-        title: "C Notes", 
-        category: "Programming Language", 
-        icon: "fa-solid fa-c" ,
-        fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
-    },
-    { 
-        title: "Java Notes", 
-        category: "Programming Language", 
-        icon: "fa-brands fa-java",
+        title: "Angular Notes", 
+        category: "Framework / Front End", 
+        icon: "fa-brands fa-angular",
         fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf' 
     },
     { 
-        title: "Golang Notes", 
-        category: "Programming Language", 
-        icon: "fa-brands fa-golang" ,
+        title: "Spring Notes", 
+        category: "Framework / Backend", 
+        image:'assets/images/note_icons/spring.png' ,
         fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
     },
     { 
-        title: "Python", 
-        category: "Programming Language", 
-        icon: "fa-brands fa-python" ,
+        title: "Spring Boot", 
+        category: "Framework / Backend", 
+        image:'assets/images/note_icons/spring_boot.png' ,
         fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
     },
     { 
-        title: "Javascript", 
-        category: "Programming Language", 
-        icon: "fa-brands fa-js" ,
+        title: "MySQL Notes", 
+        category: "DBMS / SQL", 
+        image:'assets/images/note_icons/mysql.png' ,
+        fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
+    },
+    { 
+        title: "Oracle SQL Notes", 
+        category: "DBMS/ SQL", 
+        image:'assets/images/note_icons/oracle.png' ,
+        fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
+    },
+    { 
+        title: "DBMS Notes", 
+        category: "Database Management System / Theory", 
+        icon: "fa-solid fa-database" ,
+        fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
+    },
+    { 
+        title: "Mongodb Notes", 
+        category: "DBMS / NOSQL", 
+        image:"assets/images/note_icons/mongodb.png",
+        fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
+    },  
+    { 
+        title: "Linux Notes", 
+        category: "Operating System / DevOps", 
+        icon: "fa-brands fa-linux" ,
+        fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
+    },
+    { 
+        title: "Docker", 
+        category: "Containerization Tool / DevOps", 
+        icon:'fa-brands fa-docker',
+        fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
+    },
+    { 
+        title: "Git", 
+        category: "Version Control / Devops", 
+        icon:'fa-brands fa-git-alt',
         fileUrl:'http://localhost:3000/public/generate-pdf/sample.pdf'
     }
+
 ];
 
 // Get the container div
@@ -39,12 +70,15 @@ cards.forEach((card, index) => {
     const cardElement = document.createElement("div");
     cardElement.classList.add("card");
 
-    cardElement.innerHTML = `
-        <div class="icon"><i class="${card.icon}"></i></div>
-        <h3>${card.title}</h3>
-        <p>Category: ${card.category}</p>
-        <button class="view-btn button-6" data-index="${index}">View</button>
-    `;
+    cardElement.innerHTML =cardElement.innerHTML = `
+    <div class="icon">
+        ${card.icon ? `<i class="${card.icon}"></i>` : `<img src="${card.image}" alt="icon">`}
+    </div>
+    <h3>${card.title}</h3>
+    <p>Category: ${card.category}</p>
+    <button class="view-btn button-6" data-index="${index}">View</button>
+`;
+
 
     container.appendChild(cardElement);
 });

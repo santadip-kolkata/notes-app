@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f077b295a0.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.9.179/pdf.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>General Notes</title>
+    <style>
+        .parallax {
+            background-image: url('assets/images/gfg_reading.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class=" parallax bg-gray-100 text-gray-900">
+
+    <!-- Toolbar -->
+    <div class=" fixed top-0 left-0 w-screen flex items-center justify-between bg-white p-4 shadow-md">
+        <div class="flex flex-row justify-center items-center space-x-4">
+            <img src="assets/images/iem_color.png" alt="IEM Logo" class="w-16 h-12">
+            <img src="assets/images/uem_color.png" alt="UEM Logo" class="w-16 h-12">
+            <img src="assets/images/gfg.png" alt="GFG Logo" class="w-16 h-16">
+        </div>
+        <div>
+            <ul class="flex space-x-4">
+                <li><a href="http://localhost:3000/notes" class="text-green-700 font-semibold hover:underline">General Notes</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Parallax Background Section -->
+    <div class="h-[50vh] flex justify-center items-center">
+        <h1 class="text-white text-4xl font-bold bg-black bg-opacity-50 p-4 rounded-lg">General Notes</h1>
+    </div>
+
+    <!-- Card Container -->
+    <div class="container mx-auto p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 
+    justify-center place-items-center" id="cardContainer"></div>
+
+    <!-- PDF Modal -->
+    <div id="pdfModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white p-4 rounded-lg shadow-lg relative w-3/4 max-w-2xl h-[80vh] overflow-y-auto">
+            <button class="absolute top-2 right-2 text-gray-600 hover:text-red-500" onclick="closePDF()">✖</button>
+            <canvas id="pdfCanvas" class="w-full"></canvas>
+        </div>
+    </div>
+    
+
+    <script src="assets/scripts/general.js"></script>
+</body>
+</html>

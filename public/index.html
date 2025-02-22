@@ -3,54 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Login Page</title>
-    <link rel="stylesheet" href="assets/styles/style.css">
+    <style>
+        .parallax {
+            background-image: url('assets/images/gfg_reading.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
 
-    <div class="toolbar">
-       <div class="logo">
-        <div class="image-wrapper">
-            <img style="width: 97px;height: 97px;" src="assets/images/iem_color.png" alt="" class="logo">
+    <!-- Navbar -->
+    <div class="fixed top-0 left-0 w-screen flex items-center justify-between bg-white p-4 shadow-md">
+        <div class="flex flex-row justify-center items-center space-x-4">
+            <img src="assets/images/iem_color.png" alt="IEM Logo" class="w-16 h-12">
+            <img src="assets/images/uem_color.png" alt="UEM Logo" class="w-16 h-12">
+            <img src="assets/images/gfg.png" alt="GFG Logo" class="w-16 h-16">
         </div>
-        <div class="image-wrapper">
-            <img src="assets/images/uem_color.png" alt="" class="logo">
-        </div>
-        <div class="image-wrapper">
-            <img src="assets/images/gfg.png" alt="" class="logo">
-        </div>
-       </div>
 
-       <div class="nav-items">
-        <ul>
-            <li class="button-52" ><a href="http://localhost:3000/notes">General Notes</a></li>
-        </ul>
-       </div>
+        <div>
+            <ul class="flex space-x-4">
+                <li><a href="http://localhost:3000/notes" class="text-green-700 font-semibold hover:underline">General Notes</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="login-container">
-        <div class="form-section">
-            <h2>Welcome</h2>
-            <p>Login to access your account and explore the content.</p>
 
-            <form id="loginForm">
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Enter your email" required />
-                    <span class="error-message" id="emailError">Enter Valid Email</span>
+    <!-- Parallax Background -->
+    <div class="parallax h-screen w-full flex items-center justify-center">
+        <!-- Login Form -->
+        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md mx-4">
+            <h2 class="text-2xl font-semibold text-center mb-4">Welcome</h2>
+            <p class="text-center text-gray-600 mb-6">Login to access your account and explore the content.</p>
+
+            <form id="loginForm" class="space-y-4">
+                <!-- Email Field -->
+                <div>
+                    <label for="email" class="block font-medium">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required 
+                        class="w-full border border-gray-300 p-3 rounded-md focus:ring-2 focus:ring-green-600 outline-none">
+                    <span class="text-red-500 text-sm hidden" id="emailError">Enter Valid Email</span>
                 </div>
 
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter your password" required />
-                    <span class="error-message" id="passwordError">Enter Valid Password</span>
+                <!-- Password Field -->
+                <div>
+                    <label for="password" class="block font-medium">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required 
+                        class="w-full border border-gray-300 p-3 rounded-md focus:ring-2 focus:ring-green-600 outline-none">
+                    <span class="text-red-500 text-sm hidden" id="passwordError">Enter Valid Password</span>
                 </div>
 
-                <button id="submitButton" type="submit">Login</button>
+                <!-- Submit Button -->
+                <button id="submitButton" type="submit" 
+                    class="w-full bg-green-700 text-white py-3 rounded-md hover:bg-green-800 transition">
+                    Login
+                </button>
             </form>
-        </div>
-
-        <div class="illustration-section">
-            <img src="assets/images/gfg_reading.jpg" alt="Reading Illustration" />
         </div>
     </div>
 

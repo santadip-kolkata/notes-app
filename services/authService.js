@@ -8,17 +8,17 @@ dotenv.config();
 const login = async (user)=>{
     if(!user.username || !user.password)
     {
-        return {message:"invalid credentials",status:400};
+        return {message:"invalid credentials",status:200};
     }
     const username= user.username;
     const exists = await User.findOne({username});
     if(!exists)
     {
-        return {'message':'invalid username',status:400}
+        return {'message':'invalid username',status:200}
     }
     const isPasswordValid =  await bcrypt.compare(user.password, exists.password);
     if (!isPasswordValid) { 
-       return{ message: 'Invalid password',status:400 }
+       return{ message: 'Invalid password',status:200 }
     };
 
     const token = jwt.sign({ id: user._id, username: user.username }, process.env.TWJ, { expiresIn: process.env.JWT_EXPIRES_IN });
